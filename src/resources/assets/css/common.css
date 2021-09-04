@@ -1,0 +1,22 @@
+
+.error-alert-show {
+    opacity: 100 !important;
+    margin: 10px !important;
+    z-index: 15 !important;
+    background-color: red !important;
+    color: white !important;
+}
+.success-alert-show {
+    opacity: 100 !important;
+    margin: 10px !important;
+    z-index: 15 !important;
+    background-color: green !important;
+    color: white !important;
+}
+.message-alert-show {
+    opacity: 100 !important;
+    margin: 10px !important;
+    z-index: 15 !important;
+    background-color: #4141de !important;
+    color: white !important;
+}

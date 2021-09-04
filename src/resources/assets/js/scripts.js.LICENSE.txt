@@ -1,0 +1,5 @@
+/*!
+    * Start Bootstrap - Material Admin Pro v1.0.1 (https://startbootstrap.com/theme/material-admin-pro)
+    * Copyright 2013-2021 Start Bootstrap
+    * Licensed under SEE_LICENSE (https://github.com/StartBootstrap/material-admin-pro/blob/master/LICENSE)
+    */
