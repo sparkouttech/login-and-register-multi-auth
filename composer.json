@@ -1,17 +1,17 @@
 {
-    "name": "sparkouttech/user-auth",
-    "description": "User authentication package",
+    "name": "sparkouttech/user-multi-auth",
+    "description": "User multi authentication package",
     "keywords": [
         "sparkouttech",
-        "user-auth"
+        "user-multi-auth"
     ],
     "homepage": "https://github.com/sparkouttech/user-auth",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
-            "name": "sivabharathy",
-            "email": "gotocva@gmail.com",
+            "name": "sparkouttech",
+            "email": "developer@sparkouttech.com",
             "role": "Developer"
         }
     ],
