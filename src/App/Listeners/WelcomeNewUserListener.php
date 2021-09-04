@@ -1,9 +1,9 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Listeners;
+namespace Sparkouttech\UserMultiAuth\App\Listeners;
 
-use Sparkouttech\UserAuth\App\Jobs\WelcomEmailJob;
-use Sparkouttech\UserAuth\App\Mail\WelcomeNewUserMail;
+use Sparkouttech\UserMultiAuth\App\Jobs\WelcomEmailJob;
+use Sparkouttech\UserMultiAuth\App\Mail\WelcomeNewUserMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 use Log;

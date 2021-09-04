@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Sparkouttech\UserAuth\App\Helpers;
+namespace Sparkouttech\UserMultiAuth\App\Helpers;
 
 
 class Helper

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Sparkouttech\UserAuth\App\Models;
+namespace Sparkouttech\UserMultiAuth\App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Referral extends Model
 {
     use HasFactory;
-    use \Sparkouttech\UserAuth\App\Traits\Uuids;
+    use \Sparkouttech\UserMultiAuth\App\Traits\Uuids;
 
     protected $table = 'referral';
 

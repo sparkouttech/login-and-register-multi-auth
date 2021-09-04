@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Sparkouttech\\UserAuth\\": "src"
+            "Sparkouttech\\UserMultiAuth\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sparkouttech\\UserAuth\\Tests\\": "tests"
+            "Sparkouttech\\UserMultiAuth\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -45,10 +45,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Sparkouttech\\UserAuth\\UserAuthServiceProvider"
+                "Sparkouttech\\UserMultiAuth\\UserMultiAuthServiceProvider"
             ],
             "aliases": {
-                "UserAuth": "Sparkouttech\\UserAuth\\UserAuthFacade"
+                "UserMultiAuth": "Sparkouttech\\UserMultiAuth\\UserMultiAuthFacade"
             }
         }
     }

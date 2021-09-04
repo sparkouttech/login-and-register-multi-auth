@@ -1,11 +1,11 @@
 <?php
 
-namespace Sparkouttech\UserAuth;
+namespace Sparkouttech\UserMultiAuth;
 
 use Illuminate\Support\Facades\Auth;
 
 
-class UserAuth
+class UserMultiAuth
 {
     // Build your next great package.
     public static function User()

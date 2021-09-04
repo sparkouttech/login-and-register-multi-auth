@@ -1,6 +1,6 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Http\Middleware;
+namespace Sparkouttech\UserMultiAuth\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

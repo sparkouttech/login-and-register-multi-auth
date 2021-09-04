@@ -1,11 +1,11 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Providers;
+namespace Sparkouttech\UserMultiAuth\App\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Sparkouttech\UserAuth\App\Events\NewUserRegisteredEvent;
-use Sparkouttech\UserAuth\App\Listeners\ReferralNewUserListener;
-use Sparkouttech\UserAuth\App\Listeners\WelcomeNewUserListener;
+use Sparkouttech\UserMultiAuth\App\Events\NewUserRegisteredEvent;
+use Sparkouttech\UserMultiAuth\App\Listeners\ReferralNewUserListener;
+use Sparkouttech\UserMultiAuth\App\Listeners\WelcomeNewUserListener;
 
 class EventServiceProvider extends ServiceProvider
 {

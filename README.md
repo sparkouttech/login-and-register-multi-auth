@@ -20,12 +20,12 @@ composer require sparkouttech/user-auth
 ```php
 // add below line in config/App.php providers array
 
-Sparkouttech\UserAuth\UserAuthServiceProvider::class,
+Sparkouttech\UserMultiAuth\UserAuthServiceProvider::class,
 ```
 
 Run below command to publish assets 
 ```php
-php artisan vendor:publish --provider="Sparkouttech\UserAuth\UserAuthServiceProvider" --tag=UserAuthAssets --force
+php artisan vendor:publish --provider="Sparkouttech\UserMultiAuth\UserAuthServiceProvider" --tag=UserAuthAssets --force
 ```
 
 ```php

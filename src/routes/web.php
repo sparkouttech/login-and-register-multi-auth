@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-use Sparkouttech\UserAuth\App\Http\Controllers\LoginController;
-use Sparkouttech\UserAuth\App\Http\Controllers\RegisterController;
-use Sparkouttech\UserAuth\App\Http\Controllers\ForgetPasswordController;
+use Sparkouttech\UserMultiAuth\App\Http\Controllers\LoginController;
+use Sparkouttech\UserMultiAuth\App\Http\Controllers\RegisterController;
+use Sparkouttech\UserMultiAuth\App\Http\Controllers\ForgetPasswordController;
 
 Route::group(['middleware' => 'web'], function() {
     //All the routes that belongs to the group goes here

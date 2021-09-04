@@ -1,13 +1,13 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Http\Controllers;
+namespace Sparkouttech\UserMultiAuth\App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use Sparkouttech\UserAuth\App\Jobs\ForgetPasswordEmailJob;
-use Sparkouttech\UserAuth\App\Requests\CheckEmailRequest;
-use Sparkouttech\UserAuth\App\Requests\SetPasswordRequest;
-use Sparkouttech\UserAuth\App\Repositories\UserRepository;
+use Sparkouttech\UserMultiAuth\App\Jobs\ForgetPasswordEmailJob;
+use Sparkouttech\UserMultiAuth\App\Requests\CheckEmailRequest;
+use Sparkouttech\UserMultiAuth\App\Requests\SetPasswordRequest;
+use Sparkouttech\UserMultiAuth\App\Repositories\UserRepository;
 
 class ForgetPasswordController extends Controller
 {

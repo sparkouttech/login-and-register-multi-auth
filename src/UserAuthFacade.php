@@ -1,13 +1,13 @@
 <?php
 
-namespace Sparkouttech\UserAuth;
+namespace Sparkouttech\UserMultiAuth;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Sparkouttech\UserAuth\Skeleton\SkeletonClass
+ * @see \Sparkouttech\UserMultiAuth\Skeleton\SkeletonClass
  */
-class UserAuthFacade extends Facade
+class UserMultiAuthFacade extends Facade
 {
     /**
      * Get the registered name of the component.

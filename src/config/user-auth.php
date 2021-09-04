@@ -1,7 +1,7 @@
 <?php
 
 /*
- * UserAuth package configuration
+ * UserMultiAuth package configuration
  */
 return [
 
@@ -15,7 +15,7 @@ return [
     "crypto" => [
         "ciphering" => "AES-128-CTR",
         "options" => 0,
-        "key" => "SparkoutUserAuth",
+        "key" => "SparkoutUserMultiAuth",
         "iv" => "1234567891011121"
     ],
 

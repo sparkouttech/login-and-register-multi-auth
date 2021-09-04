@@ -1,6 +1,6 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Http\Controllers;
+namespace Sparkouttech\UserMultiAuth\App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

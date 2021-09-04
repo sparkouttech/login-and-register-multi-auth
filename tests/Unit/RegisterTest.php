@@ -1,11 +1,11 @@
 <?php
 
-namespace Sparkouttech\UserAuth\Tests\Unit;
+namespace Sparkouttech\UserMultiAuth\Tests\Unit;
 
-use Sparkouttech\UserAuth\App\Models\User;
+use Sparkouttech\UserMultiAuth\App\Models\User;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Sparkouttech\UserAuth\Tests\TestCase;
+use Sparkouttech\UserMultiAuth\Tests\TestCase;
 
 class RegisterTest extends TestCase
 {

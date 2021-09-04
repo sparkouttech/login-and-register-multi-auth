@@ -1,6 +1,6 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Traits;
+namespace Sparkouttech\UserMultiAuth\App\Traits;
 
 use Illuminate\Support\Str;
 

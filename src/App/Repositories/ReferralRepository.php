@@ -1,8 +1,8 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Repositories;
+namespace Sparkouttech\UserMultiAuth\App\Repositories;
 
-use Sparkouttech\UserAuth\App\Models\Referral;
+use Sparkouttech\UserMultiAuth\App\Models\Referral;
 
 class ReferralRepository extends BaseRepository {
 

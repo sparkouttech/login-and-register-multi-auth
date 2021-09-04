@@ -1,10 +1,10 @@
 <?php
 
-namespace Sparkouttech\UserAuth;
+namespace Sparkouttech\UserMultiAuth;
 
 use Illuminate\Support\ServiceProvider;
 
-class UserAuthServiceProvider extends ServiceProvider
+class UserMultiAuthServiceProvider extends ServiceProvider
 {
 
     private $packagePrefix = 'user-auth';
@@ -45,7 +45,7 @@ class UserAuthServiceProvider extends ServiceProvider
         $this->app->alias(App\Http\Middleware\Cors::class, 'cors');
         // Register the main class to use with the facade
         $this->app->bind('user-auth', function () {
-            return new UserAuth;
+            return new UserMultiAuth;
         });
     }
 

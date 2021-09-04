@@ -1,9 +1,9 @@
 <?php
 
-namespace Sparkouttech\UserAuth\Tests;
+namespace Sparkouttech\UserMultiAuth\Tests;
 
-use Sparkouttech\UserAuth\UserAuth;
-use Sparkouttech\UserAuth\UserAuthServiceProvider;
+use Sparkouttech\UserMultiAuth\UserMultiAuth;
+use Sparkouttech\UserMultiAuth\UserAuthServiceProvider;
 use Illuminate\Foundation\Application;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
@@ -31,7 +31,7 @@ abstract class TestCase extends OrchestraTestCase
     protected function getPackageAliases($app)
     {
         return [
-            'UserAuth'        => UserAuth::class,
+            'UserMultiAuth'        => UserMultiAuth::class,
         ];
     }
 

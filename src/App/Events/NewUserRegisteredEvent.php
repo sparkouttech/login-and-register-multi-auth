@@ -1,6 +1,6 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Events;
+namespace Sparkouttech\UserMultiAuth\App\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;

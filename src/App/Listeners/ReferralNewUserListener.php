@@ -1,11 +1,11 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Listeners;
+namespace Sparkouttech\UserMultiAuth\App\Listeners;
 
-use Sparkouttech\UserAuth\App\Mail\WelcomeNewUserMail;
+use Sparkouttech\UserMultiAuth\App\Mail\WelcomeNewUserMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
-use Sparkouttech\UserAuth\App\Repositories\ReferralRepository;
+use Sparkouttech\UserMultiAuth\App\Repositories\ReferralRepository;
 
 class ReferralNewUserListener implements ShouldQueue
 {

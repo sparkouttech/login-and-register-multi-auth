@@ -1,6 +1,6 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Jobs;
+namespace Sparkouttech\UserMultiAuth\App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Mail;
-use Sparkouttech\UserAuth\App\Mail\WelcomeNewUserMail;
+use Sparkouttech\UserMultiAuth\App\Mail\WelcomeNewUserMail;
 
 class WelcomEmailJob implements ShouldQueue
 {

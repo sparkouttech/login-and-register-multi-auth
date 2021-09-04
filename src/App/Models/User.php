@@ -1,6 +1,6 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Models;
+namespace Sparkouttech\UserMultiAuth\App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticate;
 use Illuminate\Notifications\Notifiable;
@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticate
 {
     use Notifiable;
-    use \Sparkouttech\UserAuth\App\Traits\Uuids;
+    use \Sparkouttech\UserMultiAuth\App\Traits\Uuids;
 
     /**
      * Indicates if the IDs are auto-incrementing.

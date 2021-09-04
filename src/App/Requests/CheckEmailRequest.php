@@ -1,6 +1,6 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Requests;
+namespace Sparkouttech\UserMultiAuth\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

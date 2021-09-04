@@ -1,12 +1,12 @@
 <?php
 
-namespace Sparkouttech\UserAuth\App\Http\Controllers;
+namespace Sparkouttech\UserMultiAuth\App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Sparkouttech\UserAuth\App\Helpers\Helper;
-use Sparkouttech\UserAuth\App\Requests\RegisterRequest;
-use Sparkouttech\UserAuth\App\Repositories\UserRepository;
+use Sparkouttech\UserMultiAuth\App\Helpers\Helper;
+use Sparkouttech\UserMultiAuth\App\Requests\RegisterRequest;
+use Sparkouttech\UserMultiAuth\App\Repositories\UserRepository;
 
 class RegisterController extends Controller
 {
