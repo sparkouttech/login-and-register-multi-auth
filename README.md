@@ -49,11 +49,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
-If you discover any security related issues, please email developer@sparkouttech.com instead of using the issue tracker.
+If you discover any security related issues, please email gotocva@gmail.com instead of using the issue tracker.
 
 ## Credits
 
--   [Sparkouttech](https://github.com/sparkouttech)
+-   [sivabharathy](https://github.com/gotocva)
 
 ## License
 
