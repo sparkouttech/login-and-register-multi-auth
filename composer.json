@@ -5,13 +5,13 @@
         "sparkouttech",
         "user-multi-auth"
     ],
-    "homepage": "https://github.com/sparkouttech/user-auth",
+    "homepage": "https://github.com/sparkouttech/login-and-register-multi-auth",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
-            "name": "sparkouttech",
-            "email": "developer@sparkouttech.com",
+            "name": "sivabharathy",
+            "email": "gotocva@gmail.com",
             "role": "Developer"
         }
     ],
