@@ -53,7 +53,7 @@ If you discover any security related issues, please email developer@sparkouttech
 
 ## Credits
 
--   [Sparkouttech](https://github.com/sparkouttech)
+-   [sivabharathy](https://github.com/gotocva)
 
 ## License
 
