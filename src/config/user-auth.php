@@ -14,7 +14,7 @@ return [
      * Phone Status
      * email,phone,username
      */
-    "login_type" => email,
+    "login_type" => "email",
     /*
      * Phone Status
      */
