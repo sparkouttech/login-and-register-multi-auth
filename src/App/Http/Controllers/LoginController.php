@@ -53,4 +53,14 @@ class LoginController extends Controller
             }
         }
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function signOut() {
+        Session::flush();
+        Auth::logout();
+
+        return Redirect('/auth/user/login');
+    }
 }

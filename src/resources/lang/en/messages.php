@@ -19,6 +19,7 @@ return [
         "enter_password" => "Enter Your Passwowrd",
         "forgot_password" => "Forgot Password?",
         "login" => "Login",
+        "logout" => "Logout",
         "signup" => "Need an account? Sign up!"
     ],
 
@@ -54,6 +55,9 @@ return [
         "return_login" => "Return to login",
         "signup" => "Need an account? Sign up!"
     ],
+    "dashboard" => [
+        "heading" => "Welcome to dashboard",
+    ]
 
 
 ];
