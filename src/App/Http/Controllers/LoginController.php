@@ -24,6 +24,11 @@ class LoginController extends Controller
         return view('user-auth::login');
     }
 
+    public function mobileLogin(Request $request)
+    {
+        return view('user-auth::mobile_login');
+    }
+
     /**
      * @param LoginRequest $request
      */
