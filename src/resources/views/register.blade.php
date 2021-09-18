@@ -46,6 +46,12 @@
                                                 <input type="text" required class="form-control" name="name" id="exampleInputName1" placeholder="{{ __('user-auth::messages.register.enter_name') }}">
                                             </div>
                                         </div>
+                                        {{-- <div class="mb-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">{{ __('user-auth::messages.register.l_name') }} *</label>
+                                                <input type="text" required class="form-control" name="name" id="exampleInputName1" placeholder="{{ __('user-auth::messages.register.enter_last_name') }}">
+                                            </div>
+                                        </div> --}}
                                         <div class="mb-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">{{ __('user-auth::messages.register.email_address') }} *</label>
@@ -63,6 +69,12 @@
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">{{ __('user-auth::messages.register.password') }} *</label>
                                                 <input type="password" required class="form-control" name="password" id="exampleInputPassword1" placeholder="{{ __('user-auth::messages.register.enter_password') }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">{{ __('user-auth::messages.register.confirm_password') }} *</label>
+                                                <input type="text" required class="form-control" name="name" id="exampleInputName1" placeholder="{{ __('user-auth::messages.register.enter_confirm_password') }}">
                                             </div>
                                         </div>
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
