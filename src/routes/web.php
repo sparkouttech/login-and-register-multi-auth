@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Sparkouttech\UserMultiAuth\App\Http\Controllers\LoginController;
 use Sparkouttech\UserMultiAuth\App\Http\Controllers\RegisterController;
 use Sparkouttech\UserMultiAuth\App\Http\Controllers\ForgetPasswordController;
+use Sparkouttech\UserMultiAuth\App\Http\Controllers\HomeController;
 
 Route::group(['middleware' => 'web'], function() {
     //All the routes that belongs to the group goes here
@@ -16,11 +17,7 @@ Route::group(['middleware' => 'web'], function() {
     Route::post('/auth/user/check-email', [ForgetPasswordController::class, 'checkEmail'])->name('userAuth.check-email');
     Route::get('/auth/user/reset-password/{id}', [ForgetPasswordController::class, 'verifyPassword'])->name('userAuth.reset-password');
     Route::post('/auth/user/set-password', [ForgetPasswordController::class, 'setPassword'])->name('set-password');
-});
 
-Route::group(['prefix' => 'api','middleware' => ['cors', 'json']], function() {
-    //All the routes that belongs to the group goes here
-    Route::post('/auth/user/login', [LoginController::class, 'doLogin'])->name('api.login');
-    Route::post('/auth/user/register', [RegisterController::class, 'doRegister'])->name('api.register');
-    Route::post('/auth/user/check-email', [ForgetPasswordController::class, 'checkEmail'])->name('api.check-email');
+    Route::get('/auth/user/home', [HomeController::class, 'dashboarda'])->name('userAuth.dashboard');
+    //->middleware('auth');
 });
