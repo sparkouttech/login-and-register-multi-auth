@@ -18,6 +18,7 @@ class UserMultiAuthServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/resources/views', $this->packagePrefix);
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
 
         if ($this->app->runningInConsole()) {
 
@@ -43,6 +44,8 @@ class UserMultiAuthServiceProvider extends ServiceProvider
 
         $this->app->alias(App\Http\Middleware\JsonRequest::class, 'json');
         $this->app->alias(App\Http\Middleware\Cors::class, 'cors');
+        $this->app->alias(App\Http\Middleware\Authenticate::class, 'userauth');
+        $this->app->alias(App\Http\Middleware\RedirectIfAuthenticated::class, 'userguest');
         // Register the main class to use with the facade
         $this->app->bind('user-auth', function () {
             return new UserMultiAuth;
