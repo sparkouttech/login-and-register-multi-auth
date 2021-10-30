@@ -34,15 +34,21 @@ class LoginController extends Controller
      */
     public function doLogin(LoginRequest $request)
     {
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        if($request->email){
+            $credentials = $request->only('email', 'password');
+        }
+        if($request->phone_number){
+            $credentials = $request->only('phone_number', 'password');
+        }
+
+           if (Auth::attempt($credentials)) {
             // Authentication passed...
             if ($request->expectsJson() == true) {
                 return response()->json(['status'=>true,'message'=>'Login success','data'=>Auth::user()]);
             } else {
                 $request->session()->put('user',Auth::user());
                 $request->session()->put('token',Auth::id());
-                return redirect($this->config['login_redirect'])->with('message','Login success');
+                return redirect('/home')->with('message','Login success');
             }
         } else {
             if ($request->expectsJson() == true) {
