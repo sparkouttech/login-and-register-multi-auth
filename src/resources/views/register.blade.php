@@ -74,7 +74,7 @@
                                         <div class="mb-4">
                                             <div class="form-group">
                                                 <label for="exampleInputName1">{{ __('user-auth::messages.register.confirm_password') }} *</label>
-                                                <input type="text" required class="form-control" name="name" id="exampleInputName1" placeholder="{{ __('user-auth::messages.register.enter_confirm_password') }}">
+                                                <input type="text" required class="form-control" name="confirm_password" id="exampleInputName1" placeholder="{{ __('user-auth::messages.register.enter_confirm_password') }}">
                                             </div>
                                         </div>
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
