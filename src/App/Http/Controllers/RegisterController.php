@@ -26,7 +26,6 @@ class RegisterController extends Controller
 
     public function doRegister(RegisterRequest $request)
     {
-        // dd($request->all());
         $token = $this->helper->encrypt(implode("-",$request->toArray()));
         $request['password']=Hash::make($request['password']);
         $request['_token'] = $token;

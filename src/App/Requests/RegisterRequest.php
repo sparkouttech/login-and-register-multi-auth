@@ -23,19 +23,29 @@ class RegisterRequest extends FormRequest {
      */
     public function rules(): array
     {
-        return [
-            'email' => 'required|email|unique:users',
+        $rules = [
             'name' => 'required|string|max:50',
-            'password' => 'required'
-        ];
+            'password' => 'required|same:confirm_password',
+            'confirm_password' => 'required',
+         ];
+        if(config('user-auth.login_type') == "email"){
+            $rules['email'] = 'required|unique:users|email';
+            $rules['phone_number'] = 'sometimes|nullable|numeric|min:10|max:10';
+        }
+        if(config('user-auth.login_type') == "phone"){
+            $rules['phone_number'] = 'required|unique:users|min:10|max:10|numeric';
+            $rules['email'] = 'sometimes|nullable|email';
+        }
+        return $rules;
     }
 
     public function messages(): array
     {
         return [
-            'email.required' => 'Email is required!',
-            'name.required' => 'Name is required!',
-            'password.required' => 'Password is required!'
+            'name.required' => 'Name is required',
+            'email.required' => 'Email is required',
+            'phone_number.required' => 'Phone Number is required',
+            'password.required' => 'Password is required'
         ];
     }
 

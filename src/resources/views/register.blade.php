@@ -54,15 +54,15 @@
                                         </div> --}}
                                         <div class="mb-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">{{ __('user-auth::messages.register.email_address') }} *</label>
-                                                <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{ __('user-auth::messages.register.enter_email') }}">
-                                                <small id="emailHelp" required class="form-text text-muted">{{ __('user-auth::messages.register.email_privacy_info') }}</small>
+                                                <label for="exampleInputEmail1">{{ __('user-auth::messages.register.email_address') }}@if(config('user-auth.login_type') == "email")*@endif </label>
+                                                <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{ __('user-auth::messages.register.enter_email') }}" @if(config('user-auth.login_type') == "email") required @endif >
+                                                <small id="emailHelp" class="form-text text-muted">{{ __('user-auth::messages.register.email_privacy_info') }}</small>
                                             </div>
                                         </div>
                                         <div class="mb-4">
                                             <div class="form-group">
-                                                <label for="phone">{{ __('user-auth::messages.register.phone_number') }}</label>
-                                                <input type="text" class="form-control" name="phone_number" id="phone" placeholder="{{ __('user-auth::messages.register.enter_phone_number') }}">
+                                                <label for="phone">{{ __('user-auth::messages.register.phone_number') }}@if(config('user-auth.login_type') == "phone")*@endif</label>
+                                                <input type="text" class="form-control" name="phone_number" id="phone" placeholder="{{ __('user-auth::messages.register.enter_phone_number') }}" @if(config('user-auth.login_type') == "phone") required @endif >
                                             </div>
                                         </div>
                                         <div class="mb-4">
@@ -74,7 +74,7 @@
                                         <div class="mb-4">
                                             <div class="form-group">
                                                 <label for="exampleInputName1">{{ __('user-auth::messages.register.confirm_password') }} *</label>
-                                                <input type="text" required class="form-control" name="name" id="exampleInputName1" placeholder="{{ __('user-auth::messages.register.enter_confirm_password') }}">
+                                                <input type="text" required class="form-control" name="confirm_password" id="exampleInputName1" placeholder="{{ __('user-auth::messages.register.enter_confirm_password') }}">
                                             </div>
                                         </div>
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
