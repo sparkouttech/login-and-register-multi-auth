@@ -37,13 +37,24 @@
                                     </div>
                                     <!-- Login submission form-->
                                     <form method="post" action="{{route('userAuth.login')}}">
+                                        <input type="hidden" name="inputs" id="inputs" value="{{config('user-auth.login_type')}}">
                                         {{csrf_field()}}
                                         <div class="mb-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">{{ __('user-auth::messages.login.name_email') }} *</label>
-                                                <input type="text" class="form-control" name="email"
-                                                       id="exampleInputEmail1" aria-describedby="email" required
-                                                       placeholder="{{ __('user-auth::messages.login.enter_email_name') }}">
+                                                @if(config('user-auth.login_type') == 'email')
+
+                                                    <label for="exampleInputEmail1">{{ __('user-auth::messages.login.name_email') }} *</label>
+                                                    <input type="text" class="form-control" name="email"
+                                                        id="exampleInputEmail1" aria-describedby="email" required
+                                                        placeholder="{{ __('user-auth::messages.login.enter_email_name') }}">
+
+                                                @else
+                                                    <label for="exampleInputEmail1">{{ __('user-auth::messages.login.phone_number') }} *</label>
+                                                    <input type="number" class="form-control" name="phone_number"
+                                                        id="phone_number" aria-describedby="phone_number" required
+                                                        placeholder="{{ __('user-auth::messages.login.enter_phone_number') }}">
+
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="mb-4">
@@ -55,8 +66,7 @@
                                         </div>
                                         <div
                                             class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small fw-500 text-decoration-none"
-                                               href="{{route('userAuth.phone_number')}}">{{ __('user-auth::messages.login.signin_phone_number') }}</a>
+
                                             <a class="small fw-500 text-decoration-none"
                                                href="{{route('userAuth.forgetPasswordPage')}}">{{ __('user-auth::messages.login.forgot_password') }}</a>
                                             <button type="submit" class="btn btn-primary">{{ __('user-auth::messages.login.login') }}</button>

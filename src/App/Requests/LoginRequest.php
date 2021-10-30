@@ -23,8 +23,11 @@ class LoginRequest extends FormRequest {
      */
     public function rules(): array
     {
+
         return [
-            'email' => 'required|email',
+            'inputs' => 'required',
+            'email' => 'required_if:inputs,==,email|email',
+            'phone_number' => 'required_if:inputs,==,phone|max:10|min:10',
             'password' => 'required'
         ];
     }
@@ -33,6 +36,7 @@ class LoginRequest extends FormRequest {
     {
         return [
             'email.required' => 'Email is required!',
+            'phone_number.required' => 'Phone Number is Required',
             'password.required' => 'Password is required!'
         ];
     }
