@@ -56,8 +56,6 @@
                                         <div
                                             class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small fw-500 text-decoration-none"
-                                               href="{{route('userAuth.phone_number')}}">{{ __('user-auth::messages.login.signin_phone_number') }}</a>
-                                            <a class="small fw-500 text-decoration-none"
                                                href="{{route('userAuth.forgetPasswordPage')}}">{{ __('user-auth::messages.login.forgot_password') }}</a>
                                             <button type="submit" class="btn btn-primary">{{ __('user-auth::messages.login.login') }}</button>
                                         </div>

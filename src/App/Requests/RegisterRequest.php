@@ -23,18 +23,28 @@ class RegisterRequest extends FormRequest {
      */
     public function rules(): array
     {
-        return [
-            'email' => 'required|email|unique:users',
+        if(config('user-auth.login_type') == "email"){
+           return [
+           'email' => 'required|unique:users|email',
+           'name' => 'required|string|max:50',
+           'password' => 'required'
+        ];
+        }
+        if(config('user-auth.login_type') == "phone"){
+            return [ 
+            'phone_number' => 'required|unique:users|min:10|max:10',
             'name' => 'required|string|max:50',
             'password' => 'required'
         ];
+        }
     }
 
     public function messages(): array
     {
         return [
-            'email.required' => 'Email is required!',
             'name.required' => 'Name is required!',
+            'email.required' => 'Email is required!',
+            'phone_number.required' => 'Phone Number is required!',
             'password.required' => 'Password is required!'
         ];
     }
