@@ -42,14 +42,27 @@ class LoginController extends Controller
         }
 
            if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            if ($request->expectsJson() == true) {
-                return response()->json(['status'=>true,'message'=>'Login success','data'=>Auth::user()]);
-            } else {
-                $request->session()->put('user',Auth::user());
-                $request->session()->put('token',Auth::id());
-                return redirect('/home')->with('message','Login success');
+
+            $userDetails = Auth::user();
+            if(config('user-auth.register_verification') == true &&  $userDetails->email_verified_at != null){
+                // Authentication passed...
+                if ($request->expectsJson() == true) {
+                    return response()->json(['status'=>true,'message'=>'Login success','data'=>Auth::user()]);
+                } else {
+                    $request->session()->put('user',Auth::user());
+                    $request->session()->put('token',Auth::id());
+                    return redirect('/home')->with('message','Login success');
+                }
+            }else{
+                // Authentication passed...
+                if ($request->expectsJson() == true) {
+                    return response()->json(['status'=>false,'message'=>'Login Unsuccessfull']);
+                } else {
+                    $id=Auth::id();
+                    return view('user-auth::verify-email',compact('id'));
+                }
             }
+
         } else {
             if ($request->expectsJson() == true) {
                 return response()->json(['status'=>false,'message'=>'Login failed','data'=>(object)[]]);
