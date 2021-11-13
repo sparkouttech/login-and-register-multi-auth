@@ -13,7 +13,7 @@ Route::group(['middleware' => 'web'], function() {
     Route::post('/auth/user/login', [LoginController::class, 'doLogin'])->name('userAuth.login');
     Route::get('/auth/user/register', [RegisterController::class, 'register'])->name('userAuth.register.page')->middleware('userguest');
     Route::get('/auth/user/phone_number', [LoginController::class, 'mobileLogin'])->name('userAuth.phone_number');
-
+    Route::get('/auth/user/update-verification-status/{id}',[RegisterController::class, 'verifyUser'])->name('userAuth.verify');
     Route::post('/auth/user/register', [RegisterController::class, 'doRegister'])->name('userAuth.register');
     Route::get('/auth/user/forget-password', [ForgetPasswordController::class, 'forgetPasswordPage'])->name('userAuth.forgetPasswordPage');
     Route::post('/auth/user/check-email', [ForgetPasswordController::class, 'checkEmail'])->name('userAuth.check-email');

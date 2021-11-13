@@ -24,7 +24,7 @@ return [
     /*
     * Registration Verification Status
     */
-    'register_verification' => false,
+    'register_verification' => true,
 
     // crypto configuration files
     "crypto" => [

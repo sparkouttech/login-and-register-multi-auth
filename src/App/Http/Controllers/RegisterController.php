@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Sparkouttech\UserMultiAuth\App\Helpers\Helper;
 use Sparkouttech\UserMultiAuth\App\Requests\RegisterRequest;
 use Sparkouttech\UserMultiAuth\App\Repositories\UserRepository;
-
+use Sparkouttech\UserMultiAuth\App\Jobs\VerificationEmailJob;
+use carbon\Carbon;
 class RegisterController extends Controller
 {
     private $userRepository;
@@ -30,6 +31,9 @@ class RegisterController extends Controller
         $request['password']=Hash::make($request['password']);
         $request['_token'] = $token;
         $user = $this->userRepository->create($request->toArray());
+        if(config('user-auth.register_verification') == true && isset($request->email)){
+            dispatch(new VerificationEmailJob($user));
+        }
         if ($request->expectsJson() == true) {
             return response(['status'=>true,'data'=>$user], 200);
         } else {
@@ -37,5 +41,11 @@ class RegisterController extends Controller
             $request->session()->put('userId',$user->id);
             return redirect('/auth/user/login')->with('message','User account created successfully');
         }
+    }
+
+    public function verifyUser($id)
+    {
+       $this->userRepository->update((int)$id,['email_verified_at'=> new Carbon()]);
+        return redirect()->route('userAuth.login.page');
     }
 }
