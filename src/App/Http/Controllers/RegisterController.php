@@ -45,7 +45,8 @@ class RegisterController extends Controller
 
     public function verifyUser($id)
     {
-       $this->userRepository->update((int)$id,['email_verified_at'=> new Carbon()]);
-        return redirect()->route('userAuth.login.page');
+        $date = Carbon::now()->format('Y-m-d H:i:s');
+        $this->userRepository->updateData($id,['email_verified_at'=> $date]);
+       return redirect()->route('userAuth.login.page');
     }
 }

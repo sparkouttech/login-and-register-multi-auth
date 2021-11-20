@@ -36,14 +36,17 @@ class LoginController extends Controller
     {
         if($request->email){
             $credentials = $request->only('email', 'password');
+            $userData = $this->userRepository->findOne('email',$request->email);
         }
         if($request->phone_number){
             $credentials = $request->only('phone_number', 'password');
+            $userData = $this->userRepository->findOne('phone_number',$request->phone_number);
         }
 
            if (Auth::attempt($credentials)) {
 
             $userDetails = Auth::user();
+
             if(config('user-auth.register_verification') == true &&  $userDetails->email_verified_at != null){
                 // Authentication passed...
                 if ($request->expectsJson() == true) {
@@ -58,8 +61,8 @@ class LoginController extends Controller
                 if ($request->expectsJson() == true) {
                     return response()->json(['status'=>false,'message'=>'Login Unsuccessfull']);
                 } else {
-                    $id=Auth::id();
-                    return view('user-auth::verify-email',compact('id'));
+                    $id = $userData->id;
+                    return redirect()->to('auth/user/login/resend/'.$id);
                 }
             }
 
@@ -71,6 +74,14 @@ class LoginController extends Controller
                 return back();
             }
         }
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function resendlogin($id) {
+
+        return view('user-auth::verify-email',compact('id'));
     }
 
     /**
