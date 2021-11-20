@@ -9,6 +9,9 @@ use Sparkouttech\UserMultiAuth\App\Requests\RegisterRequest;
 use Sparkouttech\UserMultiAuth\App\Repositories\UserRepository;
 use Sparkouttech\UserMultiAuth\App\Jobs\VerificationEmailJob;
 use carbon\Carbon;
+use Exception;
+use Twilio\Rest\Client;
+use Log;
 class RegisterController extends Controller
 {
     private $userRepository;
@@ -31,8 +34,10 @@ class RegisterController extends Controller
         $request['password']=Hash::make($request['password']);
         $request['_token'] = $token;
         $user = $this->userRepository->create($request->toArray());
-        if(config('user-auth.register_verification') == true && isset($request->email)){
+        if(config('user-auth.register_verification') == true && isset($request->email)&&config('user-auth.login_type') == 'email' ){
             dispatch(new VerificationEmailJob($user));
+        }else{
+            $this->sendSms("+91".$user->phone_number);
         }
         if ($request->expectsJson() == true) {
             return response(['status'=>true,'data'=>$user], 200);
@@ -47,5 +52,29 @@ class RegisterController extends Controller
     {
        $this->userRepository->update((int)$id,['email_verified_at'=> new Carbon()]);
         return redirect()->route('userAuth.login.page');
+    }
+
+    public function sendSms($phone)
+    {
+        $receiverNumber =$phone;
+        $message = "This is testing from sparkout";
+  
+        try {
+  
+            $account_sid = config('user-auth.twilio_sid');
+            $auth_token = "c942916bba31b45ed1593908b29a4414";
+            $twilio_number = "+15704058916";
+  
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create($receiverNumber, [
+                'from' => $twilio_number, 
+                'body' => $message]);
+                Log::info($client);
+                Log::info($phone);
+                dd('SMS Sent Successfully.');
+  
+        } catch (Exception $e) {
+            dd("Error: ". $e->getMessage());
+        }
     }
 }

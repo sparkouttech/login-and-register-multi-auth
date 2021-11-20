@@ -17,6 +17,10 @@ return [
      */
 
     "login_type" => "phone",
+    "twilio_sid" => "AC336753576ed6dd20905d771c00e847b5",
+    "twilio_token" =>"c942916bba31b45ed1593908b29a4414",
+    "twilio_from" =>"+15704058916",
+
     /*
      * Phone Status
      */

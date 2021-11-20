@@ -24,5 +24,6 @@ Route::group(['middleware' => 'web'], function() {
     Route::get('/home', [HomeController::class, 'dashboard'])->name('userAuth.dashboard')->middleware('userauth');
 
     Route::get('signout', [LoginController::class, 'signOut'])->name('signout');
+    Route::get('sendSMS', [TwilioSMSController::class, 'index']);
 
 });
