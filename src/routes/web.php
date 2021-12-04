@@ -10,7 +10,8 @@ use Sparkouttech\UserMultiAuth\App\Http\Controllers\HomeController;
 Route::group(['middleware' => 'web'], function() {
     //All the routes that belongs to the group goes here
     Route::group(['prefix' => '/auth/user/'], function() {
-    Route::get('login', [LoginController::class, 'login'])->name('userAuth.login.page')->middleware('userguest');
+    Route::get('login', [LoginController::class, 'login'])->name('userAuth.login.page');
+    Route::get('login/resend/{id}', [LoginController::class, 'resendlogin']);
     Route::post('login', [LoginController::class, 'doLogin'])->name('userAuth.login');
     Route::get('register', [RegisterController::class, 'register'])->name('userAuth.register.page')->middleware('userguest');
     Route::get('phone_number', [LoginController::class, 'mobileLogin'])->name('userAuth.phone_number');

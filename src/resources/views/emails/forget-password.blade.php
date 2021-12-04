@@ -1,4 +1,4 @@
-
+@component('mail::message')
 <h2>
     Dear, {{$content['name']}}
 </h2>
@@ -10,10 +10,13 @@
     If you would like to continue.
 </p>
 
-
-<a href="{{url('/')}}/user/reset-password/{{$content->id}}" target="_blank">
-    Click Here
+<a href="{{url('/')}}/auth/user/reset-password/{{$content->id}}" target="_blank">
+   <button class="button button-primary"> Click Here</button>
 </a>
-<br>
+
+<br><br><br>
+
 Thanks,<br>
 {{ config('app.name') }}
+
+@endcomponent

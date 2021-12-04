@@ -71,6 +71,25 @@ class BaseRepository
     }
 
     /**
+     * Find model id.
+     *
+     * @param  $modelId
+     * @param array $columns
+     * @param array $relations
+     * @param array $appends
+     * @return Model
+     */
+    public function findId(
+         $modelId,
+        array $columns = ['*'],
+        array $relations = [],
+        array $appends = []
+    ): ?Model {
+        return $this->model->select($columns)->with($relations)->findOrFail($modelId)->append($appends);
+    }
+
+
+    /**
      * Find trashed model by id.
      *
      * @param int $modelId
@@ -116,6 +135,20 @@ class BaseRepository
     {
         $model = $this->findById($modelId);
 
+        return $model->update($payload);
+    }
+
+    /**
+     * Update existing model.
+     *
+     * @param int $modelId
+     * @param array $payload
+     * @return bool
+     */
+    public function updateData($modelId, array $payload)
+    {
+        $model = $this->findId($modelId);
+        // dd($payload);
         return $model->update($payload);
     }
 
