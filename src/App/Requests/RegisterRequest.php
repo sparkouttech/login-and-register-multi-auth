@@ -30,7 +30,7 @@ class RegisterRequest extends FormRequest {
          ];
         if(config('user-auth.login_type') == "email"){
             $rules['email'] = 'required|unique:users|email';
-            $rules['phone_number'] = 'sometimes|nullable|numeric|min:10|max:10';
+            $rules['phone_number'] = 'sometimes|nullable|numeric|digits:10';
         }
         if(config('user-auth.login_type') == "phone"){
             $rules['phone_number'] = 'required|unique:users|numeric';

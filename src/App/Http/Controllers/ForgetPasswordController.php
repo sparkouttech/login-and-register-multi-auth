@@ -4,6 +4,7 @@ namespace Sparkouttech\UserMultiAuth\App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Sparkouttech\UserMultiAuth\App\Jobs\ForgetPasswordEmailJob;
 use Sparkouttech\UserMultiAuth\App\Requests\CheckEmailRequest;
 use Sparkouttech\UserMultiAuth\App\Requests\SetPasswordRequest;
@@ -25,6 +26,7 @@ class ForgetPasswordController extends Controller
 
     public function forgetPasswordPage(Request  $request)
     {
+
         return view('user-auth::forget-password');
     }
 
@@ -37,6 +39,7 @@ class ForgetPasswordController extends Controller
         $userExist = $this->userRepository->findOne('email',$request->email);
         if($userExist){
             dispatch(new ForgetPasswordEmailJob($userExist));
+            
             Session::flash('message','Password reset link has been sent to your email');
             return back()->with('message','Password reset link has been sent to your email');
         }else{
@@ -46,7 +49,8 @@ class ForgetPasswordController extends Controller
 
     public function setPassword(SetPasswordRequest $request)
     {
-        $this->userRepository->update($request->id, ['password' => $request->password]);
+        $password = Hash::make($request->password);
+        $this->userRepository->updateData($request->id, ['password' => $password]);
         return redirect()->route('userAuth.login.page');
     }
 }
