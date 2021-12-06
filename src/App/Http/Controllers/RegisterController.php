@@ -33,10 +33,14 @@ class RegisterController extends Controller
         $token = $this->helper->encrypt(implode("-",$request->toArray()));
         $request['password']=Hash::make($request['password']);
         $request['_token'] = $token;
+
         $user = $this->userRepository->create($request->toArray());
-        if(config('user-auth.register_verification') == true && isset($request->email)&&config('user-auth.login_type') == 'email' ){
+
+        if(config('user-auth.register_verification') == true && isset($request->email) && config('user-auth.login_type') == 'email' ){
+
             dispatch(new VerificationEmailJob($user));
-        }else{
+        }else if(config('user-auth.register_verification') == true && config('user-auth.login_type') == 'phone' ){
+
             $this->sendSms("+91".$user->phone_number);
         }
         if ($request->expectsJson() == true) {
@@ -59,21 +63,21 @@ class RegisterController extends Controller
     {
         $receiverNumber =$phone;
         $message = "This is testing from sparkout";
-  
+
         try {
-  
+
             $account_sid = config('user-auth.twilio_sid');
             $auth_token = "c942916bba31b45ed1593908b29a4414";
             $twilio_number = "+15704058916";
-  
+
             $client = new Client($account_sid, $auth_token);
             $client->messages->create($receiverNumber, [
-                'from' => $twilio_number, 
+                'from' => $twilio_number,
                 'body' => $message]);
                 Log::info($client);
                 Log::info($phone);
                 dd('SMS Sent Successfully.');
-  
+
         } catch (Exception $e) {
             dd("Error: ". $e->getMessage());
         }

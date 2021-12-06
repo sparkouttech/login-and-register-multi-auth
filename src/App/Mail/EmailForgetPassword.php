@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerificationEmailTest extends Mailable
+class EmailForgetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,7 +28,7 @@ class VerificationEmailTest extends Mailable
      * @return $this
      */
     public function build()
-    {   
-        return $this->markdown('user-auth::emails.registration-verification')->with("content",$this->mail);
+    {
+        return $this->markdown('user-auth::emails.forget-password')->with("content",$this->mail);
     }
 }

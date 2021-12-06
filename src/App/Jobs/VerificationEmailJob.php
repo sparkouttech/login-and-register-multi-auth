@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Mail;
-use Sparkouttech\UserMultiAuth\App\Mail\VerificationEmailTest;
+use Sparkouttech\UserMultiAuth\App\Mail\VerificationEmail;
 
 class VerificationEmailJob implements ShouldQueue
 {
@@ -33,7 +33,7 @@ class VerificationEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $user_mail = $this->email['email'];
-        Mail::to($user_mail)->send(new VerificationEmailTest($this->email));
+        $userMail = $this->email['email'];
+        Mail::to($userMail)->send(new VerificationEmail($this->email));
     }
 }

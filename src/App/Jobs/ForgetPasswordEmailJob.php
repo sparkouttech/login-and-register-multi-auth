@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Mail;
-use Sparkouttech\UserMultiAuth\App\Mail\EmailTest;
+use Sparkouttech\UserMultiAuth\App\Mail\EmailForgetPassword;
 
 class ForgetPasswordEmailJob implements ShouldQueue
 {
@@ -32,7 +32,7 @@ class ForgetPasswordEmailJob implements ShouldQueue
     public function handle()
     {
         //
-        $user_mail = $this->email;
-        $mail = Mail::to($user_mail)->send(new EmailTest($user_mail));
+        $userMail = $this->email;
+        Mail::to($userMail)->send(new EmailForgetPassword($userMail));
     }
 }

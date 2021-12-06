@@ -24,22 +24,34 @@ class ForgetPasswordController extends Controller
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function forgetPasswordPage(Request  $request)
     {
 
         return view('user-auth::forget-password');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function verifyPassword($id)
     {
         return view('user-auth::reset-password',compact('id'));
     }
 
+    /**
+     * @param CheckEmailRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function checkEmail(CheckEmailRequest $request){
         $userExist = $this->userRepository->findOne('email',$request->email);
         if($userExist){
             dispatch(new ForgetPasswordEmailJob($userExist));
-            
+
             Session::flash('message','Password reset link has been sent to your email');
             return back()->with('message','Password reset link has been sent to your email');
         }else{
@@ -47,6 +59,10 @@ class ForgetPasswordController extends Controller
         }
     }
 
+    /**
+     * @param SetPasswordRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function setPassword(SetPasswordRequest $request)
     {
         $password = Hash::make($request->password);

@@ -34,41 +34,50 @@ class LoginController extends Controller
      */
     public function doLogin(LoginRequest $request)
     {
-        if($request->email){
+        if ($request->email) {
             $credentials = $request->only('email', 'password');
-            $userData = $this->userRepository->findOne('email',$request->email);
+            $userData = $this->userRepository->findOne('email', $request->email);
         }
-        if($request->phone_number){
+        if ($request->phone_number) {
             $credentials = $request->only('phone_number', 'password');
-            $userData = $this->userRepository->findOne('phone_number',$request->phone_number);
+            $userData = $this->userRepository->findOne('phone_number', $request->phone_number);
         }
 
-           if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
 
             $userDetails = Auth::user();
 
-            if(config('user-auth.register_verification') == true &&  $userDetails->email_verified_at != null){
+            if (config('user-auth.register_verification') == true && $userDetails->email_verified_at != null) {
                 // Authentication passed...
                 if ($request->expectsJson() == true) {
-                    return response()->json(['status'=>true,'message'=>'Login success','data'=>Auth::user()]);
+                    return response()->json(['status' => true, 'message' => 'Login success', 'data' => Auth::user()]);
                 } else {
-                    $request->session()->put('user',Auth::user());
-                    $request->session()->put('token',Auth::id());
-                    return redirect('/home')->with('message','Login success');
+                    $request->session()->put('user', Auth::user());
+                    $request->session()->put('token', Auth::id());
+                    return redirect('/home')->with('message', 'Login success');
                 }
-            }else{
+            } else if (config('user-auth.register_verification') == true && $userDetails->email_verified_at == null) {
                 // Authentication passed...
                 if ($request->expectsJson() == true) {
-                    return response()->json(['status'=>false,'message'=>'Login Unsuccessfull']);
+                    return response()->json(['status' => false, 'message' => 'Account is not verified']);
                 } else {
                     $id = $userData->id;
-                    return redirect()->to('auth/user/login/resend/'.$id);
+                    return redirect()->to('auth/user/login/resend/' . $id);
+                }
+            }else {
+                // Authentication passed...
+                if ($request->expectsJson() == true) {
+                    return response()->json(['status' => false, 'message' => 'Login Unsuccessfull']);
+                } else {
+                    $request->session()->put('user', Auth::user());
+                    $request->session()->put('token', Auth::id());
+                    return redirect('/home')->with('message', 'Login success');
                 }
             }
 
         } else {
             if ($request->expectsJson() == true) {
-                return response()->json(['status'=>false,'message'=>'Login failed','data'=>(object)[]]);
+                return response()->json(['status' => false, 'message' => 'Login failed', 'data' => (object)[]]);
             } else {
                 Session::flash('error', 'Invalid credentials');
                 return back();
@@ -79,15 +88,17 @@ class LoginController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function resendlogin($id) {
+    public function resendlogin($id)
+    {
 
-        return view('user-auth::verify-email',compact('id'));
+        return view('user-auth::verify-email', compact('id'));
     }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function signOut() {
+    public function signOut()
+    {
         Session::flush();
         Auth::logout();
 
