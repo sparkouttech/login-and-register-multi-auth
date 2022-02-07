@@ -90,7 +90,6 @@ class LoginController extends Controller
      */
     public function resendlogin($id)
     {
-
         return view('user-auth::verify-email', compact('id'));
     }
 

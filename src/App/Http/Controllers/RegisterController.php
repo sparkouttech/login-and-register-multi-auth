@@ -56,30 +56,31 @@ class RegisterController extends Controller
     {
         $date = Carbon::now()->format('Y-m-d H:i:s');
         $this->userRepository->updateData($id,['email_verified_at'=> $date]);
-       return redirect()->route('userAuth.login.page');
+        return redirect()->route('userAuth.login.page');
     }
 
     public function sendSms($phone)
     {
         $receiverNumber =$phone;
         $message = "This is testing from sparkout";
+        $otp = rand(10000,99999);
 
         try {
 
             $account_sid = config('user-auth.twilio_sid');
             $auth_token = "c942916bba31b45ed1593908b29a4414";
-            $twilio_number = "+15704058916";
+            $twilio_number = "+1570l4058916";
 
             $client = new Client($account_sid, $auth_token);
+
             $client->messages->create($receiverNumber, [
                 'from' => $twilio_number,
-                'body' => $message]);
-                Log::info($client);
-                Log::info($phone);
+                'body' => $message."your otp is an :".$otp
+            ]);
                 dd('SMS Sent Successfully.');
 
         } catch (Exception $e) {
-            dd("Error: ". $e->getMessage());
+            dd("Twillo Error: ". $e->getMessage());
         }
     }
 }
