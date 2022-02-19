@@ -12,6 +12,9 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8">
+                            @if(session('message'))
+                                <span class="guest_error-one"><i class="fa fa-exclamation-triangle"></i>{{ session('message') }}</span>
+                             @endif
                             <div class="card card-raised shadow-10 mt-5 mt-xl-10 mb-4">
                                 <div class="card-body p-5">
                                     <!-- Auth header with logo image-->
@@ -39,8 +42,8 @@
                                         </div>
                                         <div class="mb-4">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword2">Verify Password</label>
-                                                <input type="password" class="form-control" name="verifyPassword" id="exampleInputPassword2" aria-describedby="emailHelp" placeholder="Verify password" required>
+                                                <label for="exampleInputPassword2">Enter Confirm Password</label>
+                                                <input type="password" class="form-control" name="verifyPassword" id="exampleInputPassword2" aria-describedby="emailHelp" placeholder="Re-Type password" required>
                                             </div>
                                         </div>
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">

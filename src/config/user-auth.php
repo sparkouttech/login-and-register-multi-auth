@@ -17,9 +17,9 @@ return [
      */
 
     "login_type" => "phone",
-    "twilio_sid" => "AC336753576ed6dd20905d771c00e847b5",
-    "twilio_token" =>"c942916bba31b45ed1593908b29a4414",
-    "twilio_from" =>"+15704058916",
+    "twilio_sid" => "AC5ecccf66454d3cf4cdd102dcd049790a",
+    "twilio_token" =>"6a1d37fec1bd7a3cff603242211e183d",
+    "twilio_from" =>"+919500878623",
 
 
     /*

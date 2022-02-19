@@ -131,7 +131,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">We're sad as we couldn't satisfy you with our service. we will try our best to make our services better for customers like you. <br><br>Think once more if you want us to give one more try Just press the button below to Resend Email</p>
+                            <p style="margin: 0;">We're sad as we couldn't satisfy you with our service. we will try our best to make our services better for customers like you. <br><br>Think once more if you want us to give one more try Just press the button below to Resend @if($type == 'email') Email @else Otp @endif</p>
                         </td>
                     </tr>
                     <tr>
@@ -141,7 +141,11 @@
                                     <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
+                                                @if($type == 'email')
                                                 <td align="center" style="border-radius: 3px;" bgcolor="#ff7361"><a href="{{url('/')}}/auth/user/update-verification-status/{{$id}}"  style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #ff7361; display: inline-block;">Resend Mail</a></td>
+                                                @else
+                                                <td align="center" style="border-radius: 3px;" bgcolor="#ff7361"><a href="{{url('/')}}/auth/user/forget-password"  style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #ff7361; display: inline-block;">Resend Otp</a></td>
+                                                @endif
                                             </tr>
                                         </table>
                                     </td>
@@ -156,7 +160,7 @@
                     </tr>
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Thanks for choosing our service,<br>PHP Team</p>
+                            <p style="margin: 0;">Thanks for choosing our service</p>
                         </td>
                     </tr>
                 </table>
@@ -174,17 +178,7 @@
                 </table>
             </td>
         </tr>
-        <tr>
-            <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                    <tr>
-                        <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;"> <br>
-                            <p style="margin: 0;">If these emails get annoying, please feel free to <a href="#" target="_blank" style="color: #111111; font-weight: 700;">unsubscribe</a>.</p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+
     </table>
 </body>
 

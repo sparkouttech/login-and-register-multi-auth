@@ -39,24 +39,38 @@ class RegisterController extends Controller
         if(config('user-auth.register_verification') == true && isset($request->email) && config('user-auth.login_type') == 'email' ){
 
             dispatch(new VerificationEmailJob($user));
-        }else if(config('user-auth.register_verification') == true && config('user-auth.login_type') == 'phone' ){
 
-            $this->sendSms("+91".$user->phone_number);
+            if ($request->expectsJson() == true) {
+                return response(['status'=>true,'data'=>$user], 200);
+            } else {
+                $user_id= $user->id;
+
+                $request->session()->put('user',$user);
+                $request->session()->put('userId',$user_id);
+
+                return redirect('/auth/user/login')->with('message','Please verify your email before login');
+
+            }
+        }else if(config('user-auth.register_verification') == true && config('user-auth.login_type') == 'phone' ){
+            $otp = $this->sendSms("+91".$user->phone_number);
+
+            if ($request->expectsJson() == true) {
+                return response(['status'=>true,'data'=>$user], 200);
+            } else {
+                $user_id= $user->id;
+                $request->session()->put('user',$user);
+                $request->session()->put('userId',$user_id);
+                return view('user-auth::otp_verify',compact('otp','user_id'));
+            }
         }
-        if ($request->expectsJson() == true) {
-            return response(['status'=>true,'data'=>$user], 200);
-        } else {
-            $request->session()->put('user',$user);
-            $request->session()->put('userId',$user->id);
-            return redirect('/auth/user/login')->with('message','User account created successfully');
-        }
+
     }
 
     public function verifyUser($id)
     {
         $date = Carbon::now()->format('Y-m-d H:i:s');
         $this->userRepository->updateData($id,['email_verified_at'=> $date]);
-        return redirect()->route('userAuth.login.page');
+        return redirect()->route('userAuth.login.page')->with('message','Email verified sucessfully');
     }
 
     public function sendSms($phone)
@@ -64,12 +78,11 @@ class RegisterController extends Controller
         $receiverNumber =$phone;
         $message = "This is testing from sparkout";
         $otp = rand(10000,99999);
-
         try {
 
             $account_sid = config('user-auth.twilio_sid');
-            $auth_token = "c942916bba31b45ed1593908b29a4414";
-            $twilio_number = "+1570l4058916";
+            $auth_token =config('user-auth.twilio_token');
+            $twilio_number = config('user-auth.twilio_from');
 
             $client = new Client($account_sid, $auth_token);
 
@@ -77,7 +90,8 @@ class RegisterController extends Controller
                 'from' => $twilio_number,
                 'body' => $message."your otp is an :".$otp
             ]);
-                dd('SMS Sent Successfully.');
+
+            return $otp;
 
         } catch (Exception $e) {
             dd("Twillo Error: ". $e->getMessage());

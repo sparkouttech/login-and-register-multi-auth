@@ -52,6 +52,9 @@ return [
         "email_address" => "Email Address",
         "enter_email" => "Enter email",
         "send_email" => "We'll send an verification link into your email",
+        "send_phone" => "We'll send an verification code into your phone number",
+        "phone_number" => "Phone Number",
+        "enter_phone" => "Enter valid Phone Number",
         "return_login" => "Return to login",
         "signup" => "Need an account? Sign up!"
     ],
