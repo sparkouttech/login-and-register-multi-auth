@@ -24,6 +24,9 @@
         <div id="layoutAuthentication_content">
             <!-- Main page content-->
             <main>
+                @if(session('message'))
+                        <span class="guest_error-one"><i class="fa fa-exclamation-triangle"></i>{{ session('message') }}</span>
+                    @endif
                 <!-- Main content container-->
                 <div class="container">
                     <div class="row justify-content-center">

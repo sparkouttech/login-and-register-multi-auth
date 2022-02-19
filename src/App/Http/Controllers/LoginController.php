@@ -37,50 +37,93 @@ class LoginController extends Controller
         if ($request->email) {
             $credentials = $request->only('email', 'password');
             $userData = $this->userRepository->findOne('email', $request->email);
+
+            if (Auth::attempt($credentials)) {
+
+                $userDetails = Auth::user();
+
+                if (config('user-auth.register_verification') == true && $userDetails->email_verified_at != null) {
+                    // Authentication passed...
+                    if ($request->expectsJson() == true) {
+                        return response()->json(['status' => true, 'message' => 'Login success', 'data' => Auth::user()]);
+                    } else {
+                        $request->session()->put('user', Auth::user());
+                        $request->session()->put('token', Auth::id());
+                        return redirect('/home')->with('message', 'Login success');
+                    }
+                } else if (config('user-auth.register_verification') == true && $userDetails->email_verified_at == null) {
+                    // Authentication passed...
+                    if ($request->expectsJson() == true) {
+                        return response()->json(['status' => false, 'message' => 'Account is not verified']);
+                    } else {
+                        $id = $userData->id;
+                        $type = 'email';
+                        return redirect()->to('auth/user/login/resend/'.$type.'/' . $id);
+                    }
+                }else {
+                    // Authentication passed...
+                    if ($request->expectsJson() == true) {
+                        return response()->json(['status' => false, 'message' => 'Login Unsuccessfull']);
+                    } else {
+                        $request->session()->put('user', Auth::user());
+                        $request->session()->put('token', Auth::id());
+                        return redirect('/home')->with('message', 'Login success');
+                    }
+                }
+
+            } else {
+                if ($request->expectsJson() == true) {
+                    return response()->json(['status' => false, 'message' => 'Login failed', 'data' => (object)[]]);
+                } else {
+                    // Session::flash('error', 'Invalid credentials');
+                    return back()->with('message','Invalid credentials');
+                }
+            }
         }
         if ($request->phone_number) {
             $credentials = $request->only('phone_number', 'password');
             $userData = $this->userRepository->findOne('phone_number', $request->phone_number);
-        }
 
-        if (Auth::attempt($credentials)) {
+            if (Auth::attempt($credentials)) {
 
-            $userDetails = Auth::user();
+                $userDetails = Auth::user();
 
-            if (config('user-auth.register_verification') == true && $userDetails->email_verified_at != null) {
-                // Authentication passed...
-                if ($request->expectsJson() == true) {
-                    return response()->json(['status' => true, 'message' => 'Login success', 'data' => Auth::user()]);
-                } else {
-                    $request->session()->put('user', Auth::user());
-                    $request->session()->put('token', Auth::id());
-                    return redirect('/home')->with('message', 'Login success');
+                if (config('user-auth.register_verification') == true && $userDetails->phone_number_verified_at != null) {
+                    // Authentication passed...
+                    if ($request->expectsJson() == true) {
+                        return response()->json(['status' => true, 'message' => 'Login success', 'data' => Auth::user()]);
+                    } else {
+                        $request->session()->put('user', Auth::user());
+                        $request->session()->put('token', Auth::id());
+                        return redirect('/home')->with('message', 'Login success');
+                    }
+                } else if (config('user-auth.register_verification') == true && $userDetails->phone_number_verified_at == null) {
+                    // Authentication passed...
+                    if ($request->expectsJson() == true) {
+                        return response()->json(['status' => false, 'message' => 'Account is not verified']);
+                    } else {
+                        $id = $userData->id;
+                        $type = 'phone';
+                        return redirect()->to('auth/user/login/resend/'.$type.'/' . $id);
+                    }
+                }else {
+                    // Authentication passed...
+                    if ($request->expectsJson() == true) {
+                        return response()->json(['status' => false, 'message' => 'Login Unsuccessfull']);
+                    } else {
+                        $request->session()->put('user', Auth::user());
+                        $request->session()->put('token', Auth::id());
+                        return redirect('/home')->with('message', 'Login success');
+                    }
                 }
-            } else if (config('user-auth.register_verification') == true && $userDetails->email_verified_at == null) {
-                // Authentication passed...
-                if ($request->expectsJson() == true) {
-                    return response()->json(['status' => false, 'message' => 'Account is not verified']);
-                } else {
-                    $id = $userData->id;
-                    return redirect()->to('auth/user/login/resend/' . $id);
-                }
-            }else {
-                // Authentication passed...
-                if ($request->expectsJson() == true) {
-                    return response()->json(['status' => false, 'message' => 'Login Unsuccessfull']);
-                } else {
-                    $request->session()->put('user', Auth::user());
-                    $request->session()->put('token', Auth::id());
-                    return redirect('/home')->with('message', 'Login success');
-                }
-            }
 
-        } else {
-            if ($request->expectsJson() == true) {
-                return response()->json(['status' => false, 'message' => 'Login failed', 'data' => (object)[]]);
             } else {
-                Session::flash('error', 'Invalid credentials');
-                return back();
+                if ($request->expectsJson() == true) {
+                    return response()->json(['status' => false, 'message' => 'Login failed', 'data' => (object)[]]);
+                } else {
+                    // Session::flash('error', 'Invalid credentials');
+                    return back()->with('message','Invalid credentials');
+                }
             }
         }
     }
@@ -88,10 +131,9 @@ class LoginController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function resendlogin($id)
+    public function resendlogin($type,$id)
     {
-
-        return view('user-auth::verify-email', compact('id'));
+            return view('user-auth::verify-email', compact('id','type'));
     }
 
     /**

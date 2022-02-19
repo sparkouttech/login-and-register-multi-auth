@@ -62,7 +62,7 @@
                                         <div class="mb-4">
                                             <div class="form-group">
                                                 <label for="phone">{{ __('user-auth::messages.register.phone_number') }}@if(config('user-auth.login_type') == "phone")*@endif</label>
-                                                <input type="text" class="form-control" name="phone_number" id="phone" placeholder="{{ __('user-auth::messages.register.enter_phone_number') }}" @if(config('user-auth.login_type') == "phone") required @endif >
+                                                <input type="number" class="form-control" name="phone_number" id="phone" placeholder="{{ __('user-auth::messages.register.enter_phone_number') }}" @if(config('user-auth.login_type') == "phone") required @endif >
                                             </div>
                                         </div>
                                         <div class="mb-4">

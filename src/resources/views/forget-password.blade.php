@@ -38,6 +38,10 @@
                                     <!-- Reset password submission form-->
                                     <form method="post" action="{{route('userAuth.check-email')}}">
                                         {{csrf_field()}}
+
+                                        @if(config('user-auth.login_type') == 'email')
+                                        <input type="hidden" class="form-control" name="type" value="email">
+
                                         <div class="mb-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">{{ __('user-auth::messages.forget-password.email_address') }}</label>
@@ -49,6 +53,22 @@
                                             <a class="small fw-500 text-decoration-none" href="login"></a>
                                             <button class="btn btn-primary" href="{{route('userAuth.login.page')}}">{{ __('user-auth::messages.forget-password.reset_password') }}</button>
                                         </div>
+                                    @else
+                                    <input type="hidden" class="form-control" name="type" value="phone">
+
+                                    <div class="mb-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">{{ __('user-auth::messages.forget-password.phone_number') }}</label>
+                                            <input type="number" class="form-control" name="phone" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{ __('user-auth::messages.forget-password.enter_phone') }}" required>
+                                            <small id="emailHelp" class="form-text text-muted">{{ __('user-auth::messages.forget-password.send_phone') }}</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <a class="small fw-500 text-decoration-none" href="login"></a>
+                                        <button class="btn btn-primary" href="{{route('userAuth.login.page')}}">{{ __('user-auth::messages.forget-password.reset_password') }}</button>
+                                    </div>
+                                    @endif
+
                                     </form>
                                 </div>
                             </div>

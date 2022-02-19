@@ -24,8 +24,9 @@ class CheckEmailRequest extends FormRequest {
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
-        ];
+            'email' => 'required_if:inputs,==,email|email',
+            'phone_number' => 'required_if:inputs,==,phone|max:10|min:10',
+           ];
     }
 
     public function messages(): array
